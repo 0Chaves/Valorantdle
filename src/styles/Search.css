@@ -1,0 +1,12 @@
+
+.cardsSearch{
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+}
+
+.cardSearched{
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
