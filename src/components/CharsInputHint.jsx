@@ -1,9 +1,9 @@
-export default function CharsInputHint ({charIcons, charPrev}){
+export default function CharsInputHint ({charIcons, charSearch}){
     
     return(
         <>
         <div className="cardsSearch">
-            {charPrev.length>0 ? charPrev.map((char)=>{
+            {charSearch.length>0 ? charSearch.map((char)=>{
                 return(
                     <>
                     <div className="cardSearched">

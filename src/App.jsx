@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {v4 as uuidv4} from 'uuid'
+import Tries from './components/Tries'
 import './App.css'
 import Astra_icon from './icons/Astra_icon.png'
 import Breach_icon from './icons/Breach_icon.png'
@@ -36,6 +36,7 @@ function App() {
   ]
   const chars = [
     {
+      id: uuidv4(),
       nome: 'Astra',
       ano: 2021,
       sexo: 'Feminino',
@@ -43,6 +44,7 @@ function App() {
       icon: Astra_icon
     },
     {
+      id: uuidv4(),
       nome: 'Breach',
       ano: 2021,
       sexo: 'Masculino',
@@ -50,6 +52,7 @@ function App() {
       icon: Breach_icon
     },
     {
+      id: uuidv4(),
       nome: 'Brimstone',
       ano: 2021,
       sexo: 'Masculino',
@@ -57,6 +60,7 @@ function App() {
       icon: Brimstone_icon
     },
     {
+      id: uuidv4(),
       nome: 'Chamber',
       ano: 2021,
       sexo: 'Masculino',
@@ -64,6 +68,7 @@ function App() {
       icon: Chamber_icon
     },
     {
+      id: uuidv4(),
       nome: 'Clove',
       ano: 2024,
       sexo: 'Feminino',
@@ -71,6 +76,7 @@ function App() {
       icon: Clove_icon
     },
     {
+      id: uuidv4(),
       nome: 'Cypher',
       ano: 2021,
       sexo: 'Masculino',
@@ -78,6 +84,7 @@ function App() {
       icon: Cypher_icon
     },
     {
+      id: uuidv4(),
       nome: 'Deadlock',
       ano: 2023,
       sexo: 'Feminino',
@@ -85,6 +92,7 @@ function App() {
       icon: Deadlock_icon
     },
     {
+      id: uuidv4(),
       nome: 'Fade',
       ano: 2022,
       sexo: 'Feminino',
@@ -92,6 +100,7 @@ function App() {
       icon: Fade_icon
     },
     {
+      id: uuidv4(),
       nome: 'Gekko',
       ano: 2023,
       sexo: 'Masculino',
@@ -99,6 +108,7 @@ function App() {
       icon: Gekko_icon
     },
     {
+      id: uuidv4(),
       nome: 'Harbor',
       ano: 2022,
       sexo: 'Masculino',
@@ -106,6 +116,7 @@ function App() {
       icon: Harbor_icon
     },
     {
+      id: uuidv4(),
       nome: 'Iso',
       ano: 2023,
       sexo: 'Masculino',
@@ -113,6 +124,7 @@ function App() {
       icon: Iso_icon
     },
     {
+      id: uuidv4(),
       nome: 'Jett',
       ano: 2021,
       sexo: 'Feminino',
@@ -120,6 +132,7 @@ function App() {
       icon: Jett_icon
     },
     {
+      id: uuidv4(),
       nome: 'Killjoy',
       ano: 2021,
       sexo: 'Feminino',
@@ -127,6 +140,7 @@ function App() {
       icon: KJ_icon
     },
     {
+      id: uuidv4(),
       nome: 'KAY/O',
       ano: 2021,
       sexo: 'Masculino',
@@ -134,6 +148,7 @@ function App() {
       icon: KO_icon
     },
     {
+      id: uuidv4(),
       nome: 'Neon',
       ano: 2022,
       sexo: 'Feminino',
@@ -141,6 +156,7 @@ function App() {
       icon: Neon_icon
     },
     {
+      id: uuidv4(),
       nome: 'Omen',
       ano: 2021,
       sexo: 'Masculino',
@@ -148,6 +164,7 @@ function App() {
       icon: Omen_icon
     },
     {
+      id: uuidv4(),
       nome: 'Phoenix',
       ano: 2021,
       sexo: 'Masculino',
@@ -155,6 +172,7 @@ function App() {
       icon: Phoenix_icon
     },
     {
+      id: uuidv4(),
       nome: 'Raze',
       ano: 2021,
       sexo: 'Feminino',
@@ -162,6 +180,7 @@ function App() {
       icon: Raze_icon
     },
     {
+      id: uuidv4(),
       nome: 'Reyna',
       ano: 2021,
       sexo: 'Feminino',
@@ -169,6 +188,7 @@ function App() {
       icon: Reyna_icon
     },
     {
+      id: uuidv4(),
       nome: 'Sage',
       ano: 2021,
       sexo: 'Feminino',
@@ -176,6 +196,7 @@ function App() {
       icon: Sage_icon
     },
     {
+      id: uuidv4(),
       nome: 'Skye',
       ano: 2021,
       sexo: 'Feminino',
@@ -183,6 +204,7 @@ function App() {
       icon: Skye_icon
     },
     {
+      id: uuidv4(),
       nome: 'Sova',
       ano: 2021,
       sexo: 'Masculino',
@@ -190,6 +212,7 @@ function App() {
       icon: Sova_icon
     },
     {
+      id: uuidv4(),
       nome: 'Viper',
       ano: 2021,
       sexo: 'Feminino',
@@ -197,6 +220,7 @@ function App() {
       icon: Viper_icon
     },
     {
+      id: uuidv4(),
       nome: 'Yoru',
       ano: 2021,
       sexo: 'Masculino',
@@ -204,6 +228,7 @@ function App() {
       icon: Yoru_icon
     },
     {
+      id: uuidv4(),
       nome: 'Vyse',
       ano: 2024,
       sexo: 'Feminino',
@@ -212,10 +237,13 @@ function App() {
     }
   ]
 
+  const [charsLeft, setCharsLeft] = useState(chars)
   const [inputNome, setInputNome] = useState('')
-  const [charPrev, setCharPrev] = useState([])
+  const [charSearch, setCharSearch] = useState([])
+  const [charTries, setCharTries] = useState([])
+  const chosen = chars[0]
 
-  const handleCharPrev = (e) =>{
+  const handleCharSearch = (e) =>{
     setInputNome(e.target.value)
   }
 
@@ -238,20 +266,35 @@ function App() {
         }
       }
     })
-    setCharPrev(filtredChars)
+    setCharSearch(filtredChars)
   }, [inputNome])
 
   const printar = () =>{
-    console.log(charPrev)
+    console.log(charSearch)
     console.log(inputNome)
   }
+
+  const accept = (e) =>{
+    if(e.key === 'Enter'){
+      setCharTries([...charTries, charSearch[0]])
+      setCharsLeft(charsLeft.filter(char=>char.nome != charSearch[0].nome))
+    }
+  }
+
   return (
     <>
+      <header></header>
+
       <div className='search'>
-        <input type="text" onChange={handleCharPrev} value={inputNome}/>
-        {charPrev.length>0? <CharsInputHint charPrev={charPrev} charIcons={charIcons}/> : null}
+        <input type="text" onChange={handleCharSearch} value={inputNome} onKeyDown={accept}/>
+        {charSearch.length>0? <CharsInputHint charSearch={charSearch} charIcons={charIcons}/> : null}
         <button onClick={()=>printar()}>printar</button>
       </div>
+
+      <div>
+        {charTries.length > 0 ? <Tries charTries={charTries} chosen={chosen}/> : null}
+      </div>
+
     </>
   )
 }

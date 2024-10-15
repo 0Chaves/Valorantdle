@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+.correct{
+  background-color: greenyellow;
+}
+
+.incorrect{
+  background-color: red;
+}
