@@ -248,7 +248,7 @@ function App() {
   }
 
   useEffect(()=>{
-    const filtredChars = chars.filter(char=> {
+    const filtredChars = charsLeft.filter(char=> {
       if(inputNome==''){
         return false
       }
@@ -257,7 +257,6 @@ function App() {
       }
       else{
         const sliced = char.nome.toLowerCase().substring(0,(inputNome.length))
-        console.log(sliced)
         if(sliced === inputNome.toLowerCase()){
           return true
         }
@@ -276,8 +275,10 @@ function App() {
 
   const accept = (e) =>{
     if(e.key === 'Enter'){
-      setCharTries([...charTries, charSearch[0]])
-      setCharsLeft(charsLeft.filter(char=>char.nome != charSearch[0].nome))
+      if(charSearch[0] != undefined){
+        setCharTries([...charTries, charSearch[0]])
+        setCharsLeft(charsLeft.filter(char=>char.nome != charSearch[0].nome))  
+      }
     }
   }
 
