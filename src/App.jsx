@@ -247,27 +247,35 @@ function App() {
     setInputNome(e.target.value)
   }
 
-  useEffect(()=>{
+  const personagens_restantes = () =>{
     const filtredChars = charsLeft.filter(char=> {
-      if(inputNome==''){
-        return false
-      }
-      if(inputNome.length > char.nome.length){
-        return false
+    if(inputNome==''){
+      return false
+    }
+    if(inputNome.length > char.nome.length){
+      return false
+    }
+    else{
+      const sliced = char.nome.toLowerCase().substring(0,(inputNome.length))
+      if(sliced === inputNome.toLowerCase()){
+        return true
       }
       else{
-        const sliced = char.nome.toLowerCase().substring(0,(inputNome.length))
-        if(sliced === inputNome.toLowerCase()){
-          return true
-        }
-        else{
-          return false
-        }
+        return false
       }
+    }
     })
     setCharSearch(filtredChars)
-  }, [inputNome])
+  }
 
+  useEffect(()=>{
+    personagens_restantes()
+  }, [inputNome])
+  
+  useEffect(()=>{
+    personagens_restantes()
+  }, [charsLeft])
+  
   const printar = () =>{
     console.log(charSearch)
     console.log(inputNome)
@@ -284,7 +292,9 @@ function App() {
 
   return (
     <>
-      <header></header>
+      <header>
+        <p></p>
+      </header>
 
       <div className='search'>
         <input type="text" onChange={handleCharSearch} value={inputNome} onKeyDown={accept}/>
