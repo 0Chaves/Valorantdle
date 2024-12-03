@@ -302,7 +302,14 @@ function App() {
         <button onClick={()=>printar()}>printar</button>
       </div>
 
-      <div>
+      <div className='tries_container'>
+        <div className="descr">
+            <div className="card_descricao">Personagem</div>
+            <div className="card_descricao">Nome</div>
+            <div className="card_descricao">Ano</div>
+            <div className="card_descricao">Sexo</div>
+            <div className="card_descricao">Funcao</div>
+        </div>
         {charTries.length > 0 ? <Tries charTries={charTries} chosen={chosen}/> : null}
       </div>
 

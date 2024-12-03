@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-.tries{
+.tries_container{
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,13 @@
   justify-content: center;
   font-size: 1.2rem;
   font-weight: bold;
-  
+}
+.tries{
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
 }
 .card_container {
   width: 100%;
@@ -50,7 +56,7 @@
   border-bottom: solid 3px white;
   padding: 2rem;
   width: 100px;
-  height: 30px;
+  height: 30px; 
 }
 .correct{
   background-color: rgb(8, 100, 28);
