@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .tries_container{
   width: 100%;
   display: flex;

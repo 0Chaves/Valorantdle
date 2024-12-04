@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import {v4 as uuidv4} from 'uuid'
 import Tries from './components/Tries'
 import './App.css'
+import './styles/Search.css'
 import Astra_icon from './icons/Astra_icon.png'
 import Breach_icon from './icons/Breach_icon.png'
 import Brimstone_icon from './icons/Brimstone_icon.png'
@@ -281,6 +282,12 @@ function App() {
     console.log(inputNome)
   }
 
+  const handleSelection = (id) =>{
+    const charSelected = charSearch.filter(char=>char.id === id)[0]
+    setCharTries([...charTries, charSelected])
+    setCharsLeft(charsLeft.filter(char=>char.nome != charSelected.nome))
+  }
+
   const accept = (e) =>{
     if(e.key === 'Enter'){
       if(charSearch[0] != undefined){
@@ -293,25 +300,26 @@ function App() {
   return (
     <>
       <header>
-        <p></p>
+        <p>Logo do valorant</p>
       </header>
 
-      <div className='search'>
-        <input type="text" onChange={handleCharSearch} value={inputNome} onKeyDown={accept}/>
-        {charSearch.length>0? <CharsInputHint charSearch={charSearch} charIcons={charIcons}/> : null}
-        <button onClick={()=>printar()}>printar</button>
-      </div>
-
-      <div className='tries_container'>
-        <div className="descr">
-            <div className="card_descricao">Personagem</div>
-            <div className="card_descricao">Nome</div>
-            <div className="card_descricao">Ano</div>
-            <div className="card_descricao">Sexo</div>
-            <div className="card_descricao">Funcao</div>
+      <section className='content'>
+        <div className='search_container'>
+          <input type="text" onChange={handleCharSearch} value={inputNome} onKeyDown={accept}/>
+          {charSearch.length>0? <CharsInputHint handleSelection={handleSelection} charSearch={charSearch} charIcons={charIcons}/> : null}
         </div>
-        {charTries.length > 0 ? <Tries charTries={charTries} chosen={chosen}/> : null}
-      </div>
+
+        <div className='tries_container'>
+          <div className="descr">
+              <div className="card_descricao">Personagem</div>
+              <div className="card_descricao">Nome</div>
+              <div className="card_descricao">Ano</div>
+              <div className="card_descricao">Sexo</div>
+              <div className="card_descricao">Funcao</div>
+          </div>
+          {charTries.length > 0 ? <Tries charTries={charTries} chosen={chosen}/> : null}
+        </div>
+      </section>
 
     </>
   )
